@@ -1,0 +1,22 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: consumer-service
+#logging:
+#  level:
+#    wen.tian.it: debug
+#    org.springframework: debug
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka,http://127.0.0.1:10087/eureka
+    registry-fetch-interval-seconds: 10
+#配置Hystrix服务超时时间
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2000

@@ -1,0 +1,25 @@
+server:
+  port: 8081
+spring:
+  #配置服务在注册中心中的名字
+  application:
+    name: user-service
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/zjyg?characterEncoding=utf-8&serverTimezone=UTC
+    username: root
+    password: root
+mybatis:
+  type-aliases-package: wen.tian.it.pojo
+logging:
+  level:
+    wen.tian.it: debug
+    org.springframework: debug
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka,http://127.0.0.1:10087/eureka
+  instance:
+    #心跳续约 意思是每隔30秒服务会向注册中心发送心跳，证明自己还活着，如果超过90秒没有发送
+    #注册中心会认为该服务宕机，然后从服务列表中移除
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90

@@ -1,0 +1,42 @@
+#1.路由功能，通过zuul转发请求到服务地址
+server:
+  port: 10010
+spring:
+  application:
+    name: zuul-service
+eureka:
+  client:
+    service-url:
+      #eureka高可用
+      #defaultZone: http://127.0.0.1:10087/eureka
+      defaultZone: http://127.0.0.1:10086/eureka
+zuul:
+  #全局前缀
+  prefix: /api
+  routes:
+    user-service:
+      path: /user/**
+      serviceId: user-service
+      #忽略前缀
+      strip-prefix: false
+  #忽略服务，不像前端暴露接口，允许内部调用
+  ignored-services: consumer-service
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000
+#ribbon的超时时长，真实值时（read+connect）*2 必须小于hystrix设置的超时时长。
+#因为当ribbon失败会重试，如果时间超过hystrix时长，在ribbon没来得及重试时，hystrix就已经熔断了。
+ribbon:
+  ConnectionTimeout: 500
+  ReadTimeout: 2000
+
+
+
+
+
+
+
