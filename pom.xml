@@ -30,7 +30,7 @@
         <java.version>1.8</java.version>
         <spring-cloud.versoin>Finchley.SR1</spring-cloud.versoin>
         <mapper.starter.version>2.0.3</mapper.starter.version>
-        <mysql.versoin>8.0.15</mysql.versoin>
+        <mysql.versoin>8.0.16</mysql.versoin>
     </properties>
     <dependencyManagement>
         <dependencies>
